@@ -3,14 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>e Breaking Bad</title>
+    <title>Breakin Bad</title>
+    <link rel="icon" href="./assets/images/favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="icon" href="./assets/images/favicon.png" />
   </head>
 
-  <body></body>
+  <body>
+    <header>
+      <div>
+        <audio constrols autoplay>
+          <source src=".assets/images/sound.mp3" type="audio/mpeg" />
+        </audio>
+
+        <img
+          class="background-img"
+          src="./assets/images/breaking-bad-wallpaper.jpg"
+          alt=""
+        />
+      </div>
+
+      <form class="form">
+        <input
+          type="text"
+          placeholder="Examples:Walter White"
+          class="js_input styleInput"
+        />
+        <button for="button" class="js_btn">Search</button>
+      </form>
+    </header>
+    <main class="main">
+      <aside>
+        <div class="style_favourites">
+          <h2 class="style_favourites--title">Mis favoritas❤︎</h2>
+          <ul class="js_favoriteList style_favourites--list"></ul>
+        </div>
+      </aside>
+      <section>
+        <div clas="style_card">
+          <h1 class="style_card--title">characters ❤︎</h1>
+          <ul class="js_list style_card--list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
 </html>
