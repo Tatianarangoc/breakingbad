@@ -1,5 +1,4 @@
 .header {
-  position: fixed;
   top: 0px;
   width: 100%;
 }
@@ -11,29 +10,59 @@
   background-position: center;
   background-attachment: fixed;
   position: sticky;
+  width: 100%;
 }
 .form {
   position: absolute;
-  margin-left: 130px;
+  margin-left: 20px;
   border-radius: 0.2rem;
-  top: 228px;
-
+  top: 226px;
   padding: 8px;
   background-color: $colorbg;
   width: 80%;
   &_styleInput {
     margin-left: 20px;
-    width: 85%;
+    width: 70%;
     height: 30px;
     border: 2px solid $colorOrange;
     border-radius: 0.5rem;
   }
   &_btn {
+    margin-left: 20px;
+    margin-top: 2px;
+    width: 30%;
+    height: 20px;
+    background-color: $colorOrange;
+    border: none;
+    color: $colorbg;
+    border-radius: 0.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .header {
+    position: fixed;
+  }
+  .form {
+    margin-left: 130px;
+  }
+  .form_styleInput {
+    width: 75%;
+  }
+  .form_btn {
     width: 10%;
     height: 40px;
     background-color: $colorOrange;
     border: none;
     color: $colorbg;
     border-radius: 0.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .form {
+    margin-left: 130px;
+  }
+  .form_styleInput {
+    width: 85%;
   }
 }

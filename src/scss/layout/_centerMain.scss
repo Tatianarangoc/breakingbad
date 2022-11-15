@@ -1,12 +1,12 @@
 .main {
-  margin-top: 300px;
+  margin-top: 80px;
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  gap: 20px;
 }
 
 .style_favourites {
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -15,12 +15,13 @@
     color: $colorTitle;
     text-transform: capitalize;
     margin-bottom: 30px;
+    font-size: 15px;
   }
   &--list {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 2px;
     list-style: none;
   }
 }
@@ -29,18 +30,19 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-
   &--title {
     color: $colorTitle;
     text-transform: capitalize;
     margin-bottom: 30px;
     text-align: center;
+    font-size: 15px;
   }
   &--list {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     list-style: none;
+    gap: 2px;
   }
 }
 .cards {
@@ -48,13 +50,12 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border: 2px solid $colorBorderCards;
   border-radius: 0.5rem;
-  width: 200px;
-  height: 270px;
+  width: 100px;
+  height: 170px;
   text-align: center;
-
   &_img {
-    width: 150px;
-    height: 180px;
+    width: 50px;
+    height: 80px;
     border-radius: 0.5rem;
     margin: 10px;
   }
@@ -73,8 +74,8 @@
   background-color: $colorSelectedFavorite;
 }
 .deletFavorite {
-  margin-left: 150px;
-  padding: 5px;
+  margin-left: 10px;
+  padding: 3px;
   background-color: $colorStatus;
   border: none;
   color: $colorbg;
@@ -83,4 +84,44 @@
 }
 .hiden {
   display: none;
+}
+@media (min-width: 768px) {
+  .main {
+    margin-top: 300px;
+    gap: 70px;
+  }
+  .style_favourites {
+    flex-direction: row;
+  }
+  .style_favourites--title {
+    font-size: 20px;
+  }
+  .style_card {
+    flex-direction: column;
+  }
+  .style_card--title {
+    font-size: 20px;
+  }
+
+  .cards {
+    width: 200px;
+    height: 270px;
+
+    .cards_img {
+      width: 150px;
+      height: 180px;
+      border-radius: 0.5rem;
+      margin: 10px;
+    }
+  }
+  .deletFavorite {
+    margin-left: 150px;
+    padding: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main {
+    gap: 100px;
+  }
 }
