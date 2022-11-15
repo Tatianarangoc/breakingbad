@@ -11,9 +11,9 @@ const listElementFavorites = document.querySelector('.js_favoriteList');
 let allCharaters = [];
 let favouritesCharaters = [];
 
-//functionsfor (const oneCharacter of charactersList) {
+//functions for (const oneCharacter of charactersList) {
 
-function renderCharacterList(everyCharacter) {
+function renderCharacterList(everyCharacter, isFavorite) {
   const addFavorites = favouritesCharaters.findIndex(
     (eachCard) => eachCard.char_id === parseInt(everyCharacter.char_id)
   );
@@ -30,19 +30,23 @@ function renderCharacterList(everyCharacter) {
   <article class="js_cards ${styleFavorite}  cards" id="${everyCharacter.char_id}">
   <h2 class="cards_name"> ${everyCharacter.name}</h2>
   <img class="cards_img" src=${everyCharacter.img} class="img">
-  <p class="cards_text" >${everyCharacter.status}</p>
-  </article>
+  <p class="cards_text" >${everyCharacter.status}</p>`;
+  if (isFavorite) {
+    html += `<span class="deletFavorite ">X</span>`;
+  }
+
+  html += `</article>
   </li>
  `;
   return html;
 }
 
 function renderAllCharacters() {
-  //pinta la info por cada uno de los objteors
+  //pinta la info por cada uno de los objtos
   let html = '';
   console.log(allCharaters.length);
   for (let i = 0; i < allCharaters.length; i++) {
-    html += renderCharacterList(allCharaters[i]);
+    html += renderCharacterList(allCharaters[i], false);
   }
   listElement.innerHTML = html;
   addArticlesListeners();
@@ -52,16 +56,17 @@ function renderFavouriteCharacters() {
   let html = '';
   console.log(allCharaters.length);
   for (let i = 0; i < favouritesCharaters.length; i++) {
-    html += renderCharacterList(favouritesCharaters[i]);
+    html += renderCharacterList(favouritesCharaters[i], true);
   }
   listElementFavorites.innerHTML = html;
+  addArticlesListeners();
 }
 function addArticlesListeners() {
   const articleElement = document.querySelectorAll('.js_cards');
   for (const article of articleElement) {
     article.addEventListener('click', handleclick);
   } //El addEventlistener solo se aplica a objetos,por eso se crea un for para adicionar el listener a cada uno (cards)
-}
+} //Este evento se agrega dentro de la funcion por que se usa solo cuando se cargan las imagenes de la pag
 
 function handleclick(event) {
   event.currentTarget.classList.toggle('selected');

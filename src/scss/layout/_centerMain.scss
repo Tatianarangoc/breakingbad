@@ -49,8 +49,9 @@
   border: 2px solid $colorBorderCards;
   border-radius: 0.5rem;
   width: 200px;
-  height: 250px;
+  height: 270px;
   text-align: center;
+
   &_img {
     width: 150px;
     height: 180px;
@@ -70,4 +71,17 @@
 }
 .selected {
   background-color: $colorSelectedFavorite;
+}
+.deletFavorite {
+  margin-left: 150px;
+  padding: 5px;
+  background-color: $colorOrange;
+  border: none;
+  color: $colorbg;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+.hiden {
+  display: none;
 }
