@@ -13,44 +13,9 @@
   </head>
 
   <body>
-    <header class="header">
-      <div class="background-img">
-        <audio constrols autoplay>
-          <source src="./assets/images/sound.mp3" type="audio/mp3" />
-        </audio>
-      </div>
-
-      <form class="form">
-        <input
-          type="text"
-          placeholder="Examples:Walter White"
-          class="js_input form_styleInput"
-        />
-        <button for="button" class="js_btn form_btn">Search</button>
-      </form>
-    </header>
-    <main class="main">
-      <aside>
-        <div class="style_favourites">
-          <h2 class="style_favourites--title">Mis favoritas❤︎</h2>
-          <ul class="js_favoriteList style_favourites--list"></ul>
-        </div>
-      </aside>
-      <section>
-        <div clas="style_card">
-          <h1 class="style_card--title">characters ❤︎</h1>
-          <ul class="js_list style_card--list"></ul>
-        </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <p>
-        Breaking Bad is regarded as one of the greatest television series of all
-        time,and with 16 Primetime Emmy Awards &copy;Adalab 2022- Tatiana Arango
-        Cardona
-      </p>
-    </footer>
-
+    <include src="./partials/header.html"></include>
+    <include src="./partials/main.html"></include>
+    <include src="./partials/footer.html"></include>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

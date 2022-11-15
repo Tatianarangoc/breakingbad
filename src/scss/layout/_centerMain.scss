@@ -1,0 +1,73 @@
+.main {
+  margin-top: 300px;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+
+.style_favourites {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 40px;
+  &--title {
+    color: $colorTitle;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+  }
+  &--list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+    list-style: none;
+  }
+}
+.style_card {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &--title {
+    color: $colorTitle;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  &--list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+}
+.cards {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 2px solid $colorBorderCards;
+  border-radius: 0.5rem;
+  width: 200px;
+  height: 250px;
+  text-align: center;
+  &_img {
+    width: 150px;
+    height: 180px;
+    border-radius: 0.5rem;
+    margin: 10px;
+  }
+  &_name {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 4px;
+  }
+  &_text {
+    font-size: 15px;
+    text-align: center;
+    color: $colorStatus;
+  }
+}
+.selected {
+  background-color: $colorSelectedFavorite;
+}

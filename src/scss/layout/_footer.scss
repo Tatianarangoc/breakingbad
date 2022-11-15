@@ -1,8 +1,12 @@
-.page__footer {
+.footer {
+  background-color: $colorOrange;
+  color: $colorbg;
+  padding: 10px;
   position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100vw;
-  padding: 1rem;
-  color: $color-secondary;
+  bottom: 0px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
