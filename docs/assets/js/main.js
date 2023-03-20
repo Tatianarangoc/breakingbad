@@ -1,1 +1,125 @@
-"use strict";const inputElement=document.querySelector(".js_input"),btnElement=document.querySelector(".js_btn"),listElement=document.querySelector(".js_list"),listElementFavorites=document.querySelector(".js_favoriteList");let allCharaters=[],favouritesCharaters=[];function renderCharacterList(e,t){let r;r=-1===favouritesCharaters.findIndex(t=>t.char_id===parseInt(e.char_id))?"":"selected";let a=`\n\n  <li >  \n  <article class="js_cards ${r}  cards" id="${e.char_id}">\n  <h2 class="cards_name"> ${e.name}</h2>\n  <img class="cards_img" src=${e.img} class="img">\n  <p class="cards_text" >${e.status}</p>`;return t&&(a+='<span class="deletFavorite ">X</span>'),a+="</article>\n  </li>\n ",a}function renderAllCharacters(){let e="";console.log(allCharaters.length);for(let t=0;t<allCharaters.length;t++)e+=renderCharacterList(allCharaters[t],!1);listElement.innerHTML=e,addArticlesListeners()}function renderFavouriteCharacters(){let e="";console.log(allCharaters.length);for(let t=0;t<favouritesCharaters.length;t++)e+=renderCharacterList(favouritesCharaters[t],!0);listElementFavorites.innerHTML=e,addArticlesListeners()}function addArticlesListeners(){const e=document.querySelectorAll(".js_cards");for(const t of e)t.addEventListener("click",handleclick)}function handleclick(e){e.currentTarget.classList.toggle("selected");const t=allCharaters.find(t=>t.char_id===parseInt(e.currentTarget.id)),r=favouritesCharaters.findIndex(t=>t.char_id===parseInt(e.currentTarget.id));console.log(r),-1===r?(favouritesCharaters.push(t),localStorage.setItem("favorites",JSON.stringify(favouritesCharaters))):(favouritesCharaters.splice(r,1),localStorage.setItem("favorites",JSON.stringify(favouritesCharaters))),renderFavouriteCharacters()}function getCharactersApi(e){fetch("https://breakingbadapi.com/api/characters?name="+e).then(e=>e.json()).then(e=>{allCharaters=e,renderAllCharacters()})}btnElement.addEventListener("click",e=>{e.preventDefault(),getCharactersApi(inputElement.value)}),inputElement.addEventListener("input",e=>{e.preventDefault(),getCharactersApi(inputElement.value)}),getCharactersApi("");const savedFavorites=JSON.parse(localStorage.getItem("favorites"));null!==savedFavorites&&(favouritesCharaters=savedFavorites,renderFavouriteCharacters());
+/* eslint-disable indent */
+'use strict';
+
+//querySelectors
+const inputElement = document.querySelector('.js_input');
+const btnElement = document.querySelector('.js_btn');
+const listElement = document.querySelector('.js_list');
+const listElementFavorites = document.querySelector('.js_favoriteList');
+
+//variables globales -contienen los datos de la appa
+let allCharaters = [];
+let favouritesCharaters = [];
+
+//functions for (const oneCharacter of charactersList) {
+
+function renderCharacterList(everyCharacter, isFavorite) {
+  const addFavorites = favouritesCharaters.findIndex(
+    (eachCard) => eachCard.char_id === parseInt(everyCharacter.char_id)
+  );
+  let styleFavorite;
+  if (addFavorites === -1) {
+    styleFavorite = '';
+  } else {
+    styleFavorite = 'selected';
+  }
+
+  let html = `
+
+  <li >  
+  <article class="js_cards ${styleFavorite}  cards" id="${everyCharacter.char_id}">
+  <h2 class="cards_name"> ${everyCharacter.name}</h2>
+  <img class="cards_img" src=${everyCharacter.img} class="img">
+  <p class="cards_text" >${everyCharacter.status}</p>`;
+  if (isFavorite) {
+    html += `<span class="deletFavorite ">X</span>`;
+  }
+
+  html += `</article>
+  </li>
+ `;
+  return html;
+}
+
+function renderAllCharacters() {
+  //pinta la info por cada uno de los objtos
+  let html = '';
+  console.log(allCharaters.length);
+  for (let i = 0; i < allCharaters.length; i++) {
+    html += renderCharacterList(allCharaters[i], false);
+  }
+  listElement.innerHTML = html;
+  addArticlesListeners();
+}
+//Esta funcion es para añadir a favoritos la tarjeta seleccionada por el usuario como favorita
+function renderFavouriteCharacters() {
+  let html = '';
+  console.log(allCharaters.length);
+  for (let i = 0; i < favouritesCharaters.length; i++) {
+    html += renderCharacterList(favouritesCharaters[i], true);
+  }
+  listElementFavorites.innerHTML = html;
+  addArticlesListeners();
+}
+function addArticlesListeners() {
+  const articleElement = document.querySelectorAll('.js_cards');
+  for (const article of articleElement) {
+    article.addEventListener('click', handleclick);
+  } //El addEventlistener solo se aplica a objetos,por eso se crea un for para adicionar el listener a cada uno (cards)
+} //Este evento se agrega dentro de la funcion por que se usa solo cuando se cargan las imagenes de la pag
+
+function handleclick(event) {
+  event.currentTarget.classList.toggle('selected');
+
+  const selectedCard = allCharaters.find(
+    (eachCard) => eachCard.char_id === parseInt(event.currentTarget.id) //el event tiene el id como string  y el objeto lo returna como numerico, por eso es necesario el uso del parseInt
+  );
+
+  const addFavorites = favouritesCharaters.findIndex(
+    (eachCard) => eachCard.char_id === parseInt(event.currentTarget.id)
+  );
+
+  console.log(addFavorites);
+  if (addFavorites === -1) {
+    favouritesCharaters.push(selectedCard);
+    localStorage.setItem('favorites', JSON.stringify(favouritesCharaters));
+  } else {
+    favouritesCharaters.splice(addFavorites, 1);
+    localStorage.setItem('favorites', JSON.stringify(favouritesCharaters));
+  }
+
+  renderFavouriteCharacters();
+}
+//events
+//En el evento se llama la funcion que trae la información de la api y se le pasa el parametro (el nombre que la usuaria digita)
+btnElement.addEventListener('click', (event) => {
+  event.preventDefault();
+  getCharactersApi(inputElement.value);
+});
+inputElement.addEventListener('input', (event) => {
+  event.preventDefault();
+  getCharactersApi(inputElement.value);
+});
+
+//Codigo que se ejecuta cuando se requiere traer los caracteres, al cargar la pagina y al filtrar por nombre
+function getCharactersApi(name) {
+  fetch(`./assets/data/characters.json`) //'./assets/data/characters.json'
+    .then((response) => response.json())
+    .then((jsonData) => {
+      allCharaters = jsonData;
+      allCharaters = allCharaters.filter(
+        (character) =>
+          character.name.toLowerCase().indexOf(name.toLowerCase()) > -1
+      );
+      renderAllCharacters();
+    });
+}
+getCharactersApi('');
+
+const savedFavorites = JSON.parse(localStorage.getItem('favorites')); //se agrega el JSON.parse, para cambiarlo de texto a objeto, despues de un getItem, se debe hacer un if, para comprobar si hay algo o no en el local strogae
+if (savedFavorites !== null) {
+  favouritesCharaters = savedFavorites;
+  renderFavouriteCharacters();
+}
+
+//# sourceMappingURL=main.js.map
