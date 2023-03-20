@@ -103,10 +103,14 @@ inputElement.addEventListener('input', (event) => {
 
 //Codigo que se ejecuta cuando se requiere traer los caracteres, al cargar la pagina y al filtrar por nombre
 function getCharactersApi(name) {
-  fetch(`https://breakingbadapi.com/api/characters?name=${name}`)
+  fetch(`./assets/data/characters.json`) //'./assets/data/characters.json'
     .then((response) => response.json())
     .then((jsonData) => {
       allCharaters = jsonData;
+      allCharaters = allCharaters.filter(
+        (character) =>
+          character.name.toLowerCase().indexOf(name.toLowerCase()) > -1
+      );
       renderAllCharacters();
     });
 }

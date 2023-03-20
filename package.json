@@ -20,7 +20,11 @@
 		"gulp-uglify-es": "^2.0.0",
 		"gulp-zip": "*",
 		"node-sass": "^7.0.3",
-		"run-sequence": "*"
+		"run-sequence": "*",
+		"react": "^18.2.0",
+		"react-router-dom": "^6.9.0",
+		"react-scripts": "5.0.1",
+		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
 		"lodash.template": ">=4.5.0"
@@ -29,7 +33,8 @@
 		"start": "./node_modules/.bin/gulp",
 		"docs": "rm -rf docs && ./node_modules/.bin/gulp docs",
 		"push-docs": "rm -rf docs && gulp docs && git add docs/* && git commit -m \"Update docs\" && git push",
-		"deploy": "npm run push-docs"
+		"deploy": "npm run push-docs",
+		"build": "react-scripts build"
 	},
 	"repository": {
 		"type": "git",
